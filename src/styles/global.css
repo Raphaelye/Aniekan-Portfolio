@@ -1,0 +1,43 @@
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-snap-type: mandatory;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+::selection {
+  background: hsl(16 100% 65%);
+  color: hsl(0 0% 0%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+}
