@@ -1,5 +1,8 @@
 import { Navbar } from './components/layout/Navbar'
+import { Footer } from './components/layout/Footer'
+import { CTASection } from './sections/CTASection'
 import { HeroSection } from './sections/HeroSection'
+import { HighlightsSection } from './sections/HighlightsSection'
 import { ProcessSection } from './sections/ProcessSection'
 import { SocialProof } from './sections/SocialProof'
 
@@ -9,11 +12,12 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
-        <div className="relative bg-background max-md:pt-3">
-          <SocialProof />
-          <ProcessSection />
-        </div>
+        <SocialProof />
+        <ProcessSection />
+        <HighlightsSection />
+        <CTASection />
       </main>
+      <Footer />
     </>
   )
 }

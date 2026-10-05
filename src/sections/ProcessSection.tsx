@@ -9,18 +9,18 @@ export function ProcessSection() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section id="process" aria-labelledby="process-heading" className="bg-background pt-40 pb-section md:pt-40">
+    <section id="process" aria-labelledby="process-heading" className="bg-background pt-10 md:pt-20 lg:pt-30 pb-section ">
       <div className="mx-auto w-full max-w-site px-gutter">
         <SectionHeader
           id="process-heading"
           eyebrow="How I Work"
-          title={<>A Connected Process</>}
-          description="Rigorous process that turns audience into revenue and growth."
+          title={<>The Connected Process</>}
+          
         />
 
         <div
           aria-label="Process stages"
-          className="mt-9 flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-4 pr-gutter scrollbar-none [&::-webkit-scrollbar]:hidden md:mx-auto md:w-[74vw] md:max-w-189.5 md:gap-2.5 md:overflow-visible md:pb-0 md:pr-0 lg:w-[88vw] lg:max-w-6xl lg:gap-3"
+          className="mt-15 lg:mt-11  flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-4 pr-gutter scrollbar-none [&::-webkit-scrollbar]:hidden md:mx-auto md:w-[74vw] md:max-w-189.5 md:gap-2.5 md:overflow-visible md:pb-0 md:pr-0 lg:w-[88vw] lg:max-w-6xl lg:gap-3"
         >
           {processSteps.map((step, index) => {
             const active = activeStep === index
@@ -56,7 +56,7 @@ export function ProcessSection() {
                   <span className="block font-display text-[1.875rem] leading-none font-semibold tracking-[-.035em] md:text-[2rem] lg:text-[2.75rem]">
                     {step.title}
                   </span>
-                  <span className="mt-1.5 block max-w-56 font-body text-xs leading-[1.4] text-white/85 lg:mt-2 lg:max-w-72 lg:text-[0.9375rem]">
+                  <span className="mt-1.5 block max-w-56 font-body text-xs leading-[1.4] text-white/80 lg:mt-2 lg:max-w-72 lg:text-[0.9375rem]">
                     {step.description}
                   </span>
                 </span>

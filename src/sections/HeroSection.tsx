@@ -28,7 +28,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_60%,rgba(0,0,0,0.82)_78%,black_100%)]"
       />
 
-      <div className="relative z-20 flex min-h-[max(48rem,100svh)] items-end justify-between gap-8 px-[clamp(2rem,3.5vw,2.67rem)] pb-[clamp(9rem,15vh,10rem)] max-md:min-h-[max(48rem,100svh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:px-5 max-md:pt-80 max-md:pb-12">
+      <div className="relative z-20 flex min-h-[max(48rem,100svh)] items-end justify-between gap-8 px-5 md:px-8 lg:px-25 pb-[clamp(9rem,15vh,10rem)] max-md:min-h-[max(48rem,100svh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:pt-80 max-md:pb-12">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}

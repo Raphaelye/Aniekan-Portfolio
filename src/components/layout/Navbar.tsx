@@ -36,7 +36,7 @@ export function Navbar() {
   }, [menuOpen])
 
   return (
-      <header className="fixed inset-x-0 top-4 z-50 flex items-center justify-between gap-3 px-4 md:top-8 md:justify-center lg:px-12.5">
+    <header className="fixed inset-x-0 top-4 z-50 flex items-center justify-between gap-3 px-5 md:top-8 md:justify-center lg:px-12.5">
       <motion.nav
         aria-label="Main navigation"
         initial={reduceMotion ? false : { opacity: 0, y: -12 }}
@@ -129,7 +129,7 @@ export function Navbar() {
         )}
       </AnimatePresence>
 
-      <div className="relative z-20 md:absolute md:right-4 lg:right-12.5">
+      <div className="relative z-20 md:absolute md:right-10 lg:right-25">
         <ThemeToggle />
       </div>
     </header>
