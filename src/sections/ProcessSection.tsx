@@ -10,17 +10,17 @@ export function ProcessSection() {
 
   return (
     <section id="process" aria-labelledby="process-heading" className="bg-background pt-10 md:pt-20 lg:pt-30 pb-section ">
-      <div className="mx-auto w-full max-w-site px-gutter">
-        <SectionHeader
-          id="process-heading"
-          eyebrow="How I Work"
-          title={<>The Connected Process</>}
-          
-        />
-
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <div className="flex flex-col items-center text-center px-5">
+          <SectionHeader
+            id="process-heading"
+            eyebrow="How I Work"
+            title={<>The Connected Process</>}
+          />
+        </div>
         <div
           aria-label="Process stages"
-          className="mt-15 lg:mt-11  flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-4 pr-gutter scrollbar-none [&::-webkit-scrollbar]:hidden md:mx-auto md:w-[74vw] md:max-w-189.5 md:gap-2.5 md:overflow-visible md:pb-0 md:pr-0 lg:w-[88vw] lg:max-w-6xl lg:gap-3"
+          className="mt-15 lg:mt-11  flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-4 mx-gutter scrollbar-none [&::-webkit-scrollbar]:hidden md:mx-auto md:w-[74vw] md:max-w-189.5 md:gap-2.5 md:overflow-visible md:pb-0 md:pr-0 lg:w-[88vw] lg:max-w-6xl lg:gap-3"
         >
           {processSteps.map((step, index) => {
             const active = activeStep === index

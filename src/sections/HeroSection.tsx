@@ -1,7 +1,6 @@
-import { ArrowRight01Icon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { motion, useReducedMotion } from 'motion/react'
 import portrait from '../assets/Hero.png'
+import { AnimatedPillLink } from '../components/ui/AnimatedPillLink'
 
 export function HeroSection() {
   const reduceMotion = useReducedMotion()
@@ -28,7 +27,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_60%,rgba(0,0,0,0.82)_78%,black_100%)]"
       />
 
-      <div className="relative z-20 flex min-h-[max(48rem,100svh)] items-end justify-between gap-8 px-5 md:px-8 lg:px-25 pb-[clamp(9rem,15vh,10rem)] max-md:min-h-[max(48rem,100svh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:pt-80 max-md:pb-12">
+      <div className="relative z-20 flex min-h-[max(48rem,100svh)] items-end justify-between gap-8 section-container max-md:min-h-[max(48rem,100svh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:pt-80 max-md:pb-12">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,25 +46,12 @@ export function HeroSection() {
             Growth <span className="text-accent-alt" aria-hidden="true">•</span> Acquisition{' '}
             <span className="text-accent-alt" aria-hidden="true">•</span> Market Expansion
           </p>
-          <a
-            href="#case-studies"
-            className="group relative isolate mt-[3.55rem] inline-flex h-[3.7rem] min-w-[13.2rem] items-center justify-between gap-5 overflow-hidden rounded-full bg-accent-alt py-[.3rem] pr-[.35rem] pl-[1.7rem] font-body text-[1.2rem] font-bold whitespace-nowrap no-underline shadow-[0_.25rem_.35rem_rgba(0,0,0,.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent max-md:mt-7 max-md:h-12 max-md:min-w-42 max-md:pl-4 max-md:text-sm"
+          <AnimatedPillLink
+            to="/case-studies"
+            className="mt-[3.55rem] text-[1.2rem] shadow-[0_.25rem_.35rem_rgba(0,0,0,.3)] max-md:mt-7"
           >
-            <span
-              aria-hidden="true"
-              className="absolute inset-y-[.3rem] right-[.35rem] z-20 w-[3.15rem] overflow-hidden rounded-full bg-white transition-[width] duration-500 ease-in-out group-hover:w-[calc(100%-0.7rem)] group-focus-visible:w-[calc(100%-0.7rem)] motion-reduce:transition-none max-md:w-[2.4rem]"
-            >
-              <span className="absolute inset-y-0 right-0 flex w-50 items-center pl-[1.35rem] font-body text-[1.2rem] font-bold text-black max-md:w-[9.8rem] max-md:pl-[.65rem] max-md:text-sm">
-                View Works
-              </span>
-            </span>
-            <span className="relative z-10 text-white">
-              View Works
-            </span>
-            <span className="relative z-30 inline-flex size-[3.15rem] shrink-0 items-center justify-center text-black transition-transform duration-500 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 motion-reduce:transition-none max-md:size-[2.4rem]" aria-hidden="true">
-              <HugeiconsIcon icon={ArrowRight01Icon} size={24} strokeWidth={1.8} color="currentColor" className="max-md:size-5" />
-            </span>
-          </a>
+            View Works
+          </AnimatedPillLink>
         </motion.div>
 
         <motion.p

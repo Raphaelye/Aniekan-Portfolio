@@ -6,14 +6,18 @@
   --foreground: hsl(0 0% 95%);
   --text-primary: hsl(0 0% 5%);
   --text-muted: hsl(0 0% 30%);
+  --expertise-card-1: hsl(0 0% 20%);
+  --expertise-card-2: hsl(0 0% 30%);
+  --expertise-card-3: hsl(0 0% 40%);
+  --expertise-card-4: hsl(0 0% 50%);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
   --background: hsl(0 0% 5%);
   --foreground: hsl(0 0% 10%);
-  --text-primary: hsl(0 0% 95%);
-  --text-muted: hsl(0 0% 70%);
+  --text-primary: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
 }
 
 @theme inline {
@@ -35,6 +39,16 @@
   --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
   --spacing-section: clamp(4rem, 8vw, 8rem);
   --container-site: 80rem;
+
+  --color-dark-gradient: linear-gradient(0deg, rgba(0, 0, 0, 1) 15%, rgba(102, 102, 102, 1) 100%);
+
+  --animate-speaking-marquee: speaking-marquee 38s linear infinite;
+
+  @keyframes speaking-marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @keyframes brand-marquee {

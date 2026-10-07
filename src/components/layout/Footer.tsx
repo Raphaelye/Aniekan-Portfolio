@@ -1,10 +1,11 @@
 import logo from '../../assets/Aniekan_logo.png'
+import { Link } from 'react-router-dom'
 
 const quickLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'Expertise', href: '#expertise' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Case Studies', to: '/case-studies' },
+  { label: 'Expertise', to: '/expertise' },
 ]
 
 const socialLinks = [
@@ -65,14 +66,14 @@ export function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:gap-12 md:gap-16">
           <nav aria-label="Quick links" className="flex flex-col items-start gap-1.5">
             <h2 className="mb-1 font-body text-base font-semibold">Quick Links</h2>
-            {quickLinks.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
+            {quickLinks.map(({ label, to }) => (
+              <Link
+                key={to}
+                to={to}
                 className="font-body text-sm text-text-muted no-underline transition-colors hover:text-text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 

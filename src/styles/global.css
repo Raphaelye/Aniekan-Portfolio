@@ -1,3 +1,68 @@
+@utility section-container {
+  padding-inline: calc(var(--spacing) * 5);
+  padding-bottom: var(--spacing-section);
+
+  @media (width >= 48rem) {
+    padding-inline: calc(var(--spacing) * 8);
+  }
+
+  @media (width >= 64rem) {
+    padding-inline: calc(var(--spacing) * 25);
+  }
+}
+
+.expertise-stack {
+  --expertise-stack-top: clamp(5rem, 11vh, 6rem);
+  --expertise-stack-step: clamp(2rem, 5.5vh, 2.75rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.expertise-stack::after {
+  content: '';
+  flex: none;
+  height: 42svh;
+}
+
+.expertise-stack > :nth-child(1) { top: var(--expertise-stack-top); z-index: 1; }
+.expertise-stack > :nth-child(2) { top: calc(var(--expertise-stack-top) + var(--expertise-stack-step)); z-index: 2; }
+.expertise-stack > :nth-child(3) { top: calc(var(--expertise-stack-top) + 2 * var(--expertise-stack-step)); z-index: 3; }
+.expertise-stack > :nth-child(4) { top: calc(var(--expertise-stack-top) + 3 * var(--expertise-stack-step)); z-index: 4; }
+
+.expertise-stack > :nth-child(1) .expertise-card { background: var(--expertise-card-1); }
+.expertise-stack > :nth-child(2) .expertise-card { background: var(--expertise-card-2); }
+.expertise-stack > :nth-child(3) .expertise-card { background: var(--expertise-card-3); }
+.expertise-stack > :nth-child(4) .expertise-card { background: var(--expertise-card-4); }
+
+.expertise-card {
+  min-height: clamp(25rem, 64svh, 37rem);
+}
+
+@media (width < 48rem) {
+  .expertise-stack {
+    --expertise-stack-top: 4.5rem;
+    --expertise-stack-step: clamp(1.25rem, 3.5vh, 1.75rem);
+  }
+
+  .expertise-stack::after {
+    height: 30svh;
+  }
+
+  .expertise-card {
+    min-height: clamp(20rem, 58svh, 28rem);
+  }
+
+}
+
+@media (width >= 64rem) {
+  .expertise-stack {
+    --expertise-stack-top: clamp(5.5rem, 11.25vh, 7rem);
+    --expertise-stack-step: 3.75rem;
+  }
+
+}
+
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: none;

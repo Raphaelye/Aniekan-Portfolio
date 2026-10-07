@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
+import { Link } from 'react-router-dom'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { highlights, type Highlight } from '../data/highlights'
+
+const MotionLink = motion.create(Link)
 
 function AnimatedMetric({ highlight }: { highlight: Highlight }) {
   const metricRef = useRef<HTMLParagraphElement>(null)
@@ -84,8 +87,8 @@ export function HighlightsSection() {
         </div>
 
         <div className="relative mt-15 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:mt-11 md:pb-0 md:pr-0 lg:grid-cols-3 lg:gap-5">
-          <motion.a
-            href="#case-studies"
+          <MotionLink
+            to="/case-studies"
             initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             whileHover={reduceMotion ? undefined : { scale: 1.045, y: -2 }}
@@ -103,7 +106,7 @@ export function HighlightsSection() {
               aria-hidden="true"
               className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
             />
-          </motion.a>
+          </MotionLink>
 
           {highlights.map((highlight, index) => (
             <motion.article

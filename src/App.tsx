@@ -1,24 +1,22 @@
-import { Navbar } from './components/layout/Navbar'
-import { Footer } from './components/layout/Footer'
-import { CTASection } from './sections/CTASection'
-import { HeroSection } from './sections/HeroSection'
-import { HighlightsSection } from './sections/HighlightsSection'
-import { ProcessSection } from './sections/ProcessSection'
-import { SocialProof } from './sections/SocialProof'
+import { Route, Routes } from 'react-router-dom'
+import { Layout } from './components/layout/Layout'
+import { AboutPage } from './pages/AboutPage'
+import { CaseStudiesPage } from './pages/CaseStudiesPage'
+import { CaseStudyDetailPage } from './pages/CaseStudyDetailPage'
+import { ExpertisePage } from './pages/ExpertisePage'
+import { HomePage } from './pages/HomePage'
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <HeroSection />
-        <SocialProof />
-        <ProcessSection />
-        <HighlightsSection />
-        <CTASection />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/case-studies" element={<CaseStudiesPage />} />
+        <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
+        <Route path="/expertise" element={<ExpertisePage />} />
+      </Route>
+    </Routes>
   )
 }
 

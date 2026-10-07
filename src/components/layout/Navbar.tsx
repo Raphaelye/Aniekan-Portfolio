@@ -2,14 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import { Cancel01Icon, MailSend01Icon, Menu01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/Aniekan_logo.png'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'Expertise', href: '#expertise' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Case Studies', to: '/case-studies' },
+  { label: 'Expertise', to: '/expertise' },
 ]
 
 const focusStyle = 'focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent-alt'
@@ -18,9 +19,6 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const reduceMotion = useReducedMotion()
   const menuButtonRef = useRef<HTMLButtonElement>(null)
-
-  
-
   useEffect(() => {
     if (!menuOpen) return
 
@@ -44,35 +42,47 @@ export function Navbar() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="relative z-20 grid min-h-14 flex-1 grid-cols-[2.75rem_1fr] items-center rounded-full bg-background p-1.5 text-text-primary shadow-[0_0.5rem_1.4rem_rgba(0,0,0,0.25)] md:min-h-16 md:w-[min(34rem,calc(100%-9rem))] md:flex-none md:grid-cols-[3.25rem_1fr_3.25rem] lg:w-[min(47rem,calc(100%-9.375rem))]"
       >
-        <a
+        <Link
           className={`inline-flex size-11 items-center justify-center rounded-full bg-nav-control shadow-[0_0.125rem_0.4rem_rgba(0,0,0,0.35)] md:size-13 ${focusStyle}`}
-          href="#home"
+          to="/"
           aria-label="Aniekan — Home"
         >
           <img src={logo} alt="" width="392" height="338" className="h-auto w-[1.9rem] md:w-9" />
-        </a>
+        </Link>
 
         <div className="hidden items-center justify-center gap-3 md:flex lg:gap-5">
-          {links.map(({ label, href }, index) => (
-            <a
-              key={href}
-              href={href}
-              aria-current={index === 0 ? 'page' : undefined}
-              className={`relative shrink-0 py-1.5 font-body text-base leading-[1.2] font-medium whitespace-nowrap no-underline hover:text-accent-alt lg:text-[1.0625rem] ${focusStyle} ${index === 0 ? "after:absolute after:bottom-0 after:left-1/2 after:h-[0.3rem] after:w-[0.55rem] after:-translate-x-1/2 after:rounded-full after:bg-accent-alt after:content-['']" : ''}`}
+          {links.map(({ label, to }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to !== '/case-studies'}
+              className={({ isActive }) => `relative shrink-0 rounded-full px-3 py-1.5 font-body text-base leading-[1.2] font-medium whitespace-nowrap no-underline transition-colors duration-300 hover:text-accent-alt lg:text-[1.0625rem] ${focusStyle} ${isActive ? 'text-accent-alt' : ''}`}
             >
-              {label}
-            </a>
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <motion.span
+                      aria-hidden="true"
+                      layoutId="active-nav-marker"
+                      transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 420, damping:45, mass: 0.2 }}
+                      className="absolute inset-0 -z-10 rounded-full border border-white dark:border-gray/30 bg-foreground"
+                    />
+                  )}
+                  <span className="relative z-10">{label}</span>
+                </>
+              )}
+            </NavLink>
           ))}
         </div>
 
         <div className="flex items-center justify-end md:-translate-x-1">
-          <a
+          <Link
             className={`hidden size-11 items-center justify-center rounded-full bg-nav-control text-accent-alt shadow-[0_0.125rem_0.4rem_rgba(0,0,0,0.35)] md:inline-flex ${focusStyle}`}
-            href="#contact"
+            to="/#contact"
             aria-label="Contact Aniekan"
           >
             <HugeiconsIcon icon={MailSend01Icon} size={23} strokeWidth={1.7} color="currentColor" />
-          </a>
+          </Link>
           <button
             ref={menuButtonRef}
             className={`inline-flex size-10 items-center justify-center rounded-full bg-nav-control text-accent-alt shadow-[0_0.125rem_0.4rem_rgba(0,0,0,0.35)] md:hidden ${focusStyle}`}
@@ -105,18 +115,19 @@ export function Navbar() {
             transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 24, mass: 0.9 }}
             className="absolute top-[calc(100%+0.5rem)] right-26 left-4 z-10 flex origin-top-right flex-col gap-1 rounded-3xl border border-text-primary/10 bg-background p-2 pt-4 font-body text-text-primary shadow-[0_1rem_2rem_rgba(0,0,0,0.28)] md:hidden"
           >
-            {links.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
+            {links.map(({ label, to }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to !== '/case-studies'}
                 onClick={() => setMenuOpen(false)}
-                className={`rounded-xl px-4 py-3 font-medium no-underline transition-colors hover:bg-accent/10 hover:text-accent-alt ${focusStyle}`}
+                className={({ isActive }) => `rounded-xl px-4 py-3 font-medium no-underline transition-colors hover:bg-accent/10 hover:text-accent-alt ${focusStyle} ${isActive ? 'text-accent-alt' : ''}`}
               >
                 {label}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="#contact"
+            <Link
+              to="/#contact"
               onClick={() => setMenuOpen(false)}
               className={`mt-1 flex items-center justify-between rounded-xl border-t border-text-primary/10 px-4 py-3 font-medium no-underline transition-colors hover:bg-accent/10 hover:text-accent-alt ${focusStyle}`}
             >
@@ -124,7 +135,7 @@ export function Navbar() {
               <span className="inline-flex size-9 items-center justify-center rounded-full bg-nav-control text-accent-alt">
                 <HugeiconsIcon icon={MailSend01Icon} size={20} strokeWidth={1.7} color="currentColor" />
               </span>
-            </a>
+            </Link>
           </motion.nav>
         )}
       </AnimatePresence>
