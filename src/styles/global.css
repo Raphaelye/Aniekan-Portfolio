@@ -63,10 +63,67 @@
 }
 
 
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: hsl(0 0% 5%);
+}
+
+.preloader__bg {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transition: opacity 0.25s ease;
+}
+
+.preloader.revealing .preloader__bg {
+  opacity: 0;
+}
+
+.preloader.blackout .preloader__bg {
+  opacity: 0;
+  transition: none;
+}
+
+.preloader.revealed {
+  display: none;
+}
+
+.preloader__lottie {
+  position: absolute;
+  inset: 0;
+}
+
+.preloader__lottie svg {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.preloader.waiting .preloader__lottie {
+  animation: preloader-breathe 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes preloader-breathe {
+  to {
+    transform: scale(1.025);
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader.waiting .preloader__lottie {
+    animation: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: none;
   scroll-snap-type: mandatory;
+  overflow-x: hidden;
 }
 
 body {

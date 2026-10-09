@@ -18,7 +18,7 @@ export function ExpertiseHero() {
           <br />
           <span className="text-accent-alt">Drives Growth.</span>
         </h1>
-        <p className="mt-4 mb-0 max-w-135 max-md:max-w-65 text-[12px] leading-snug tracking-normal font-regular text-[#d2d2d2] md:mt-6 md:text-[18px]">
+        <p className="mt-4 mb-0 max-w-135 max-md:max-w-90 text-[12px] leading-snug tracking-normal font-regular text-[#d2d2d2] md:mt-6 md:text-[18px]">
           I connect strategy, acquisition and market expansion to help brands reach the right people and turn that reach into revenue.
         </p>
       </div>

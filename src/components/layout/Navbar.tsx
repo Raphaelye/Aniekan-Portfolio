@@ -4,6 +4,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/Aniekan_logo.png'
+import { useContactSheet } from '../contact/contactSheetContext'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
 const links = [
@@ -17,6 +18,7 @@ const focusStyle = 'focus-visible:outline-1 focus-visible:outline-offset-4 focus
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const openContact = useContactSheet()
   const reduceMotion = useReducedMotion()
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -76,13 +78,14 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center justify-end md:-translate-x-1">
-          <Link
+          <button
             className={`hidden size-11 items-center justify-center rounded-full bg-nav-control text-accent-alt shadow-[0_0.125rem_0.4rem_rgba(0,0,0,0.35)] md:inline-flex ${focusStyle}`}
-            to="/#contact"
+            type="button"
+            onClick={openContact}
             aria-label="Contact Aniekan"
           >
             <HugeiconsIcon icon={MailSend01Icon} size={23} strokeWidth={1.7} color="currentColor" />
-          </Link>
+          </button>
           <button
             ref={menuButtonRef}
             className={`inline-flex size-10 items-center justify-center rounded-full bg-nav-control text-accent-alt shadow-[0_0.125rem_0.4rem_rgba(0,0,0,0.35)] md:hidden ${focusStyle}`}
@@ -126,16 +129,16 @@ export function Navbar() {
                 {label}
               </NavLink>
             ))}
-            <Link
-              to="/#contact"
-              onClick={() => setMenuOpen(false)}
+            <button
+              type="button"
+              onClick={() => { setMenuOpen(false); menuButtonRef.current?.focus(); openContact() }}
               className={`mt-1 flex items-center justify-between rounded-xl border-t border-text-primary/10 px-4 py-3 font-medium no-underline transition-colors hover:bg-accent/10 hover:text-accent-alt ${focusStyle}`}
             >
               <span>Contact</span>
               <span className="inline-flex size-9 items-center justify-center rounded-full bg-nav-control text-accent-alt">
                 <HugeiconsIcon icon={MailSend01Icon} size={20} strokeWidth={1.7} color="currentColor" />
               </span>
-            </Link>
+            </button>
           </motion.nav>
         )}
       </AnimatePresence>

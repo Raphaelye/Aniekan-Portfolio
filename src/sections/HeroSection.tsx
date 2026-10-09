@@ -2,14 +2,15 @@ import { motion, useReducedMotion } from 'motion/react'
 import portrait from '../assets/Hero.png'
 import { AnimatedPillLink } from '../components/ui/AnimatedPillLink'
 
-export function HeroSection() {
+export function HeroSection({ preloaderComplete }: { preloaderComplete: boolean }) {
   const reduceMotion = useReducedMotion()
+  const revealHero = preloaderComplete || reduceMotion
 
   return (
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative isolate min-h-[max(48rem,100svh)] overflow-hidden bg-hero-backdrop text-white max-md:min-h-svh "
+      className="relative isolate min-h-dvh overflow-hidden bg-hero-backdrop text-white md:min-h-[max(48rem,100dvh)]"
     >
       <img
         src={portrait}
@@ -27,16 +28,16 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_60%,rgba(0,0,0,0.82)_78%,black_100%)]"
       />
 
-      <div className="relative z-20 flex min-h-[max(48rem,100svh)] items-end justify-between gap-8 section-container max-md:min-h-[max(48rem,100svh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:pt-80 max-md:pb-12">
+      <div className="section-container relative z-20 flex min-h-dvh items-end justify-between gap-8 md:min-h-[max(48rem,100dvh)] max-md:flex-col max-md:items-start max-md:justify-end max-md:gap-10 max-md:pt-[clamp(6rem,20dvh,12rem)] max-md:pb-5">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.3, ease: 'easeOut' }}
-          className="pb-[clamp(5rem,9vh,6rem)] max-md:pb-0 max-md:mb-25"
+          animate={revealHero ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="pb-[clamp(5rem,9vh,6rem)] max-md:mb-[clamp(2.5rem,12dvh,6.25rem)] max-md:pb-0"
         >
           <h1
             id="hero-title"
-            className="font-display text-[clamp(3.5rem,7.5vw,6.8rem)] leading-[.90] font-bold tracking-[-.055em] whitespace-nowrap max-md:text-[clamp(2.6rem,12vw,4.5rem)]"
+            className="font-display text-[clamp(3.5rem,7.5vw,6.8rem)] leading-[.90] font-bold tracking-[-.055em] whitespace-nowrap max-md:text-[clamp(2.3rem,11.5vw,4.5rem)]"
           >
             I Turn
             Attention<br />
@@ -56,8 +57,8 @@ export function HeroSection() {
 
         <motion.p
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.4, ease: 'easeOut' }}
+          animate={revealHero ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: 0.55, delay: 0.12, ease: 'easeOut' }}
           className="m-0 min-h-[9.2rem] w-[min(28rem,34vw)] shrink-0 rounded-[1.25rem] border border-white/25 bg-black/65 px-[2.1rem] py-5 font-body text-[clamp(1rem,1.65vw,1.375rem)] leading-[1.19] shadow-sm max-md:min-h-0 max-md:w-full max-md:max-w-md max-md:p-4 max-md:text-base max-md:leading-[1.35] max-md:hidden"
         >
           Growth marketing leader scaling brands, markets, and acquisition across fintech, crypto, proptech and B2B.

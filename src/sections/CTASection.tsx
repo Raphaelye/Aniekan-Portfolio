@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'motion/react'
 import logo from '../assets/Aniekan_logo.png'
-import { AnimatedPillLink } from '../components/ui/AnimatedPillLink'
+import { useContactSheet } from '../components/contact/contactSheetContext'
 
 export function CTASection() {
   const reduceMotion = useReducedMotion()
+  const openContact = useContactSheet()
 
   return (
     <section
@@ -37,13 +38,17 @@ export function CTASection() {
           </h2>
         </div>
 
-        <AnimatedPillLink
-          to="/#contact"
-          tone="dark"
-          className="relative z-10 shrink-0 shadow-[0_.25rem_.35rem_rgba(0,0,0,.2)]"
+        <button
+          type="button"
+          onClick={openContact}
+          className="group relative isolate z-10 inline-flex h-12 min-w-42 shrink-0 items-center justify-between gap-5 overflow-hidden rounded-full bg-black py-[.3rem] pl-4 pr-[.35rem] font-body text-sm font-bold whitespace-nowrap text-white shadow-[0_.25rem_.35rem_rgba(0,0,0,.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black motion-reduce:transition-none md:h-[3.7rem] md:min-w-[13.2rem] md:pl-[1.7rem] md:text-base"
         >
-          Contact Me
-        </AnimatedPillLink>
+          <span aria-hidden="true" className="absolute inset-y-[.3rem] right-[.35rem] z-20 w-[2.4rem] overflow-hidden rounded-full bg-white transition-[width] duration-500 ease-in-out group-hover:w-[calc(100%-0.7rem)] group-focus-visible:w-[calc(100%-0.7rem)] motion-reduce:transition-none md:w-[3.15rem]" />
+          <span className="relative z-30 transition-colors duration-500 group-hover:text-black group-focus-visible:text-black">Contact Me</span>
+          <span aria-hidden="true" className="relative z-30 inline-flex size-[2.4rem] shrink-0 items-center justify-center text-black transition-transform duration-500 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 motion-reduce:transition-none md:size-[3.15rem]">
+            <svg viewBox="0 0 24 24" className="size-5 fill-none stroke-current md:size-6" strokeWidth="1.8"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+          </span>
+        </button>
       </motion.div>
     </section>
   )

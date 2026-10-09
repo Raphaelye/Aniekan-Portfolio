@@ -6,7 +6,7 @@ import { Footer } from '../components/layout/Footer'
 
 export function ExpertisePage() {
   return (
-    <main>
+    <main className="select-none">
       <ExpertiseHero />
       <ExpertiseSection />
       <SpeakingEducationSection />

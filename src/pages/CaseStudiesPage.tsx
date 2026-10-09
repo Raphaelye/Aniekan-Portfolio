@@ -5,7 +5,7 @@ import { Footer } from '../components/layout/Footer'
 
 export function CaseStudiesPage() {
   return (
-    <main>
+    <main className="select-none">
       <CaseStudyHero />
       <CaseStudiesSection />
       <CTASection />

@@ -1,6 +1,8 @@
-import { type PointerEvent, useEffect } from 'react'
+import { type PointerEvent, useCallback, useEffect, useState } from 'react'
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { IntroPreloader } from '../IntroPreloader'
+import { ContactSheetProvider } from '../contact/ContactSheet'
 import { Navbar } from './Navbar'
 
 function ScrollToTop() {
@@ -21,6 +23,8 @@ function ScrollToTop() {
 }
 
 export function Layout() {
+  const [preloaderComplete, setPreloaderComplete] = useState(false)
+  const handlePreloaderComplete = useCallback(() => setPreloaderComplete(true), [])
   const reduceMotion = useReducedMotion()
   const pointerX = useMotionValue(-500)
   const pointerY = useMotionValue(-500)
@@ -38,19 +42,22 @@ export function Layout() {
   }
 
   return (
-    <div
-      onPointerMove={trackPointer}
-      onPointerLeave={() => pointerOpacity.set(0)}
-      className="min-h-svh"
-    >
-      <ScrollToTop />
-      <Navbar />
-      <Outlet />
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-49 size-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,113,77,0.14)_0%,rgba(255,113,77,0.06)_68%,transparent_92%)] max-lg:hidden"
-        style={{ x: smoothX, y: smoothY, opacity: smoothOpacity }}
-      />
-    </div>
+    <ContactSheetProvider>
+      <div
+        onPointerMove={trackPointer}
+        onPointerLeave={() => pointerOpacity.set(0)}
+        className="min-h-svh"
+      >
+        <IntroPreloader onComplete={handlePreloaderComplete} />
+        <ScrollToTop />
+        <Navbar />
+        <Outlet context={{ preloaderComplete }} />
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none fixed left-0 top-0 z-49 size-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,113,77,0.14)_0%,rgba(255,113,77,0.06)_68%,transparent_92%)] max-lg:hidden"
+          style={{ x: smoothX, y: smoothY, opacity: smoothOpacity }}
+        />
+      </div>
+    </ContactSheetProvider>
   )
 }
