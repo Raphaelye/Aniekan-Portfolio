@@ -76,6 +76,7 @@
   inset: 0;
   background: #fff;
   transition: opacity 0.25s ease;
+  min-height: 100dvh;
 }
 
 .preloader.revealing .preloader__bg {
@@ -108,7 +109,7 @@
 
 @keyframes preloader-breathe {
   to {
-    transform: scale(1.025);
+    transform: scale(1.5);
     opacity: 0.75;
   }
 }
