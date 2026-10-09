@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react'
-import portrait from '../assets/Hero.png'
 import { AnimatedPillLink } from '../components/ui/AnimatedPillLink'
+import { heroImages } from '../data/heroImages'
 
 export function HeroSection({ preloaderComplete }: { preloaderComplete: boolean }) {
   const reduceMotion = useReducedMotion()
@@ -13,7 +13,7 @@ export function HeroSection({ preloaderComplete }: { preloaderComplete: boolean 
       className="relative isolate min-h-dvh overflow-hidden bg-hero-backdrop text-white md:min-h-[max(48rem,100dvh)]"
     >
       <img
-        src={portrait}
+        src={heroImages.home}
         alt=""
         width="540"
         height="703"

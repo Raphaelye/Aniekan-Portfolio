@@ -1,4 +1,4 @@
-import  HeroImage from "../assets/expertise_hero.webp"
+import { heroImages } from '../data/heroImages'
 
 export function ExpertiseHero() {
   return (
@@ -6,7 +6,7 @@ export function ExpertiseHero() {
       aria-labelledby="expertise-hero-title"
       className="section-container flex min-h-[60svh] lg:min-h-[80svh] items-end overflow-hidden rounded-b-[45px] max-md:rounded-b-[20px] bg-cover bg-position-[100%_30%] bg-blend-multiply bg-no-repeat text-[#f5f5f5]"
       style={{
-        backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.92) 10%, rgba(102,102,102,1) 100%), url(${HeroImage})`
+        backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.92) 10%, rgba(102,102,102,1) 100%), url(${heroImages.expertise})`
       }}
     >
       <div className="relative z-1 w-full ">

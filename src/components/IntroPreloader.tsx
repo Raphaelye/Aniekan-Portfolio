@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import lottie from 'lottie-web'
 import animationData from '../data/aniekanLogoIntro.json'
+import { routeHeroImageUrls } from '../data/heroImages'
 
 const HOLD_FRAME = 254
 const REVEAL_FRAME = 262
@@ -42,6 +43,18 @@ function createPreloaderAnimationData() {
 
 const preloaderAnimationData = createPreloaderAnimationData()
 
+async function preloadHeroImages(): Promise<void> {
+  await Promise.all(routeHeroImageUrls.map(async (src) => {
+    const image = new Image()
+    image.src = src
+    try {
+      await image.decode()
+    } catch {
+      // A failed image must not trap the visitor behind the preloader.
+    }
+  }))
+}
+
 export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [phase, setPhase] = useState<PreloaderPhase>('loading')
@@ -72,6 +85,7 @@ export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
     let cancelled = false
     let revealing = false
     let revealTimer: number | undefined
+    const heroImagesReady = preloadHeroImages()
 
     const startOutro = () => {
       if (stage !== 'waiting' || !pageReady) return
@@ -82,7 +96,7 @@ export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
     }
 
     const handlePageLoad = () => {
-      void document.fonts.ready.then(() => {
+      void Promise.all([document.fonts.ready, heroImagesReady]).then(() => {
         if (cancelled) return
         pageReady = true
         startOutro()
