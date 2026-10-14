@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
-import logo from '../assets/Aniekan_logo.png'
+import logo from '../assets/Aniekan_logo.webp'
 import { useContactSheet } from '../components/contact/contactSheetContext'
 
 export function CTASection() {
@@ -23,6 +23,7 @@ export function CTASection() {
           src={logo}
           alt=""
           aria-hidden="true"
+          loading="lazy"
           className="pointer-events-none absolute bottom-0 top-0 -right-40 z-0 w-136 opacity-[0.1]  md:w-170"
         />
         <div className="relative z-10">

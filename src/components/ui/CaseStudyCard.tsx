@@ -22,6 +22,7 @@ export function CaseStudyCard({ study, index }: { study: CaseStudy; index: numbe
         <img
           src={study.image}
           alt={study.imageAlt}
+          loading="lazy"
           className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
         />
         <span

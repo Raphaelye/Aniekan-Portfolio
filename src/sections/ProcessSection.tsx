@@ -49,6 +49,7 @@ export function ProcessSection() {
                 <img
                   src={step.image}
                   alt=""
+                  loading="lazy"
                   className={`absolute inset-0 h-full w-full object-cover transition-transform duration-500 motion-reduce:transition-none ${active ? 'scale-100' : 'scale-105 group-hover:scale-[1.08]'}`}
                 />
                 <span

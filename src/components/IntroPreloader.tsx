@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import lottie from 'lottie-web'
+import lottie from 'lottie-web/build/player/lottie_light'
 import animationData from '../data/aniekanLogoIntro.json'
-import { routeHeroImageUrls } from '../data/heroImages'
+import { getRouteHeroImageUrl } from '../data/heroImages'
 
 const HOLD_FRAME = 254
 const REVEAL_FRAME = 262
@@ -43,16 +43,15 @@ function createPreloaderAnimationData() {
 
 const preloaderAnimationData = createPreloaderAnimationData()
 
-async function preloadHeroImages(): Promise<void> {
-  await Promise.all(routeHeroImageUrls.map(async (src) => {
-    const image = new Image()
-    image.src = src
-    try {
-      await image.decode()
-    } catch {
-      // A failed image must not trap the visitor behind the preloader.
-    }
-  }))
+async function preloadHeroImage(src: string): Promise<void> {
+  const image = new Image()
+  image.fetchPriority = 'high'
+  image.src = src
+  try {
+    await image.decode()
+  } catch {
+    // A failed image must not trap the visitor behind the preloader.
+  }
 }
 
 export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
@@ -85,7 +84,7 @@ export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
     let cancelled = false
     let revealing = false
     let revealTimer: number | undefined
-    const heroImagesReady = preloadHeroImages()
+    const heroImageReady = preloadHeroImage(getRouteHeroImageUrl(window.location.pathname))
 
     const startOutro = () => {
       if (stage !== 'waiting' || !pageReady) return
@@ -95,13 +94,11 @@ export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
       animation.playSegments([HOLD_FRAME, END_FRAME], true)
     }
 
-    const handlePageLoad = () => {
-      void Promise.all([document.fonts.ready, heroImagesReady]).then(() => {
-        if (cancelled) return
-        pageReady = true
-        startOutro()
-      })
-    }
+    void heroImageReady.then(() => {
+      if (cancelled) return
+      pageReady = true
+      startOutro()
+    })
 
     const handleEnterFrame = (event: { currentTime: number }) => {
       if (stage === 'outro' && !revealing && event.currentTime >= REVEAL_FRAME - HOLD_FRAME) {
@@ -134,13 +131,10 @@ export function IntroPreloader({ onComplete }: { onComplete: () => void }) {
       animation.playSegments([0, HOLD_FRAME], true)
     }
     animation.addEventListener('DOMLoaded', handleDomLoaded)
-    if (document.readyState === 'complete') handlePageLoad()
-    else window.addEventListener('load', handlePageLoad, { once: true })
 
     return () => {
       cancelled = true
       window.clearTimeout(revealTimer)
-      window.removeEventListener('load', handlePageLoad)
       animation.removeEventListener('enterFrame', handleEnterFrame)
       animation.removeEventListener('complete', handleComplete)
       animation.removeEventListener('DOMLoaded', handleDomLoaded)

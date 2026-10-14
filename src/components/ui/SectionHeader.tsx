@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import marker from '../../assets/logo_marker.png'
+import marker from '../../assets/logo_marker_small.webp'
 
 type SectionHeaderProps = {
   id: string
@@ -23,7 +23,7 @@ export function SectionHeader({
     <div className={className}>
       <div className={`flex min-w-0 flex-col gap-1 ${align === 'center' ? 'items-center text-center' : 'items-start text-left'}`}>
         <p className="flex items-center gap-px font-body text-xs font-semibold uppercase text-accent-alt md:text-sm">
-          <img src={marker} alt="" width="1351" height="1164" className="size-6 shrink-0 object-contain" />
+          <img src={marker} alt="" width="96" height="83" loading="lazy" className="size-6 shrink-0 object-contain" />
           {eyebrow}
         </p>
         <h2 id={id} className={`font-display font-semibold tracking-[-.02em] text-text-primary ${titleClassName}`}>

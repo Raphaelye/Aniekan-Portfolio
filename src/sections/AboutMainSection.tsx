@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
-import portrait from '../assets/about.png'
+import portrait from '../assets/about.webp'
 import { SectionHeader } from '../components/ui/SectionHeader'
 
 const metrics = [
@@ -154,6 +154,7 @@ export function AboutMainSection() {
           <motion.img
             src={portrait}
             alt="Aniekan Udofia in a blue and green checkered suit"
+            loading="lazy"
             initial={reduceMotion ? false : { y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.35 }}

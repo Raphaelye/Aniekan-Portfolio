@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent, type PointerEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion, useDragControls, useReducedMotion } from 'motion/react'
-import portrait from '../../assets/Hero.png'
-import logoMarker from '../../assets/logo_marker.png'
+import portrait from '../../assets/Hero.webp'
+import logoMarker from '../../assets/logo_marker.webp'
 import { ContactSheetContext } from './contactSheetContext'
 
 const emailAddress = 'business@aniekanimebong.com'

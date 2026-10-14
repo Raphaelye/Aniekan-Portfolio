@@ -1,4 +1,4 @@
-import logo from '../../assets/Aniekan_logo.png'
+import logo from '../../assets/Aniekan_logo.webp'
 import { Link } from 'react-router-dom'
 
 const quickLinks = [
@@ -49,6 +49,7 @@ export function Footer() {
           src={logo}
           alt=""
           aria-hidden="true"
+          loading="lazy"
           className="pointer-events-none "
         />
       </div>

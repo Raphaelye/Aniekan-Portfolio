@@ -17,6 +17,7 @@ export function HeroSection({ preloaderComplete }: { preloaderComplete: boolean 
         alt=""
         width="540"
         height="703"
+        fetchPriority="high"
         className="pointer-events-none absolute top-15 left-1/2 z-0 h-150 w-auto max-w-none -translate-x-1/2 md:top-15 md:bottom-0 md:h-full md:mask-none"
       />
       <div

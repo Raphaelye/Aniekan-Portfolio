@@ -1,11 +1,11 @@
-import cointract from '../assets/Cointract.png'
-import diamond from '../assets/diamond.png'
-import espoir from '../assets/Espoir.png'
-import maskex from '../assets/maskex.png'
-import puprime from '../assets/puprime.png'
-import rgp from '../assets/rgp.png'
-import sadia from '../assets/sadia.png'
-import txm from '../assets/txm.png'
+import cointract from '../assets/Cointract.webp'
+import diamond from '../assets/diamond.webp'
+import espoir from '../assets/Espoir.webp'
+import maskex from '../assets/maskex.webp'
+import puprime from '../assets/puprime.webp'
+import rgp from '../assets/rgp.webp'
+import sadia from '../assets/sadia.webp'
+import txm from '../assets/txm.webp'
 
 export const brands = [
   { name: 'Puprime', logo: puprime, width: 625, height: 186 },

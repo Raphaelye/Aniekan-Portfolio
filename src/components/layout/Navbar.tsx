@@ -3,7 +3,7 @@ import { Cancel01Icon, MailSend01Icon, Menu01Icon } from '@hugeicons/core-free-i
 import { HugeiconsIcon } from '@hugeicons/react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link, NavLink } from 'react-router-dom'
-import logo from '../../assets/Aniekan_logo.png'
+import logo from '../../assets/Aniekan_logo.webp'
 import { useContactSheet } from '../contact/contactSheetContext'
 import { ThemeToggle } from '../ui/ThemeToggle'
 

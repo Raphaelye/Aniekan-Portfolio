@@ -1,4 +1,4 @@
-import logoMarker from '../assets/logo_marker.png'
+import logoMarker from '../assets/logo_marker.webp'
 import { speakingEngagements } from '../data/speakingEngagements'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { motion, useReducedMotion } from 'motion/react'
@@ -18,6 +18,7 @@ function EngagementCards({ duplicate = false }: { duplicate?: boolean }) {
             <img
               src={engagement.image}
               alt={duplicate ? '' : engagement.imageAlt}
+              loading="lazy"
               className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
             />
             <span
@@ -69,6 +70,7 @@ export function SpeakingEducationSection() {
           <img
             aria-hidden="true"
             src={logoMarker}
+            loading="lazy"
             className="pointer-events-none absolute -bottom-10 left-20 h-70 w-auto -rotate-12 object-cover opacity-20 xl:-bottom-12 xl:left-24 xl:h-80 2xl:-bottom-14 2xl:left-28 2xl:h-96"
           />
           <p className="relative z-10 m-0 max-w-80 font-display text-base font-semibold leading-snug tracking-[-.02em] sm:text-[20px]">

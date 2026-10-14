@@ -35,6 +35,7 @@ export function CaseStudyDetailPage() {
         <img
           src={study.image}
           alt={study.imageAlt}
+          fetchPriority="high"
           className="absolute inset-0 -z-10 size-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-black via-black/70 to-black/30" />
